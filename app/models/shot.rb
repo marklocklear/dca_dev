@@ -4,4 +4,8 @@ class Shot < ActiveRecord::Base
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 	belongs_to :comedian
   attr_accessible :comedian_id, :name
+
+	def avatar_url
+		self.avatar.url
+	end
 end
