@@ -1,0 +1,28 @@
+<%= form_for(@shot) do |f| %>
+  <% if @shot.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@shot.errors.count, "error") %> prohibited this shot from being saved:</h2>
+
+      <ul>
+      <% @shot.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :comedian_id %><br />
+    <%= collection_select(:shot, :comedian_id, Comedian.all, :id, :name) %>
+  </div>
+    <%= f.file_field :avatar %>
+    <%= image_tag @shot.avatar.url(:thumb) %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+

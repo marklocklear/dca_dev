@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @shot.name %>
+</p>
+
+<p>
+  <b>Comedian:</b>
+  <%= @shot.comedian_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_shot_path(@shot) %> |
+<%= link_to 'Back', shots_path %>
