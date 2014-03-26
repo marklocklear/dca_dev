@@ -1,8 +1,8 @@
 module Api
 	module V1
 		class ShotsController < ApplicationController
-			# GET /shots
-			# GET /shots.json
+			before_filter :restrict_access
+
 			def index
 				@shots = Shot.all
 
@@ -82,6 +82,12 @@ module Api
 					format.html { redirect_to shots_url }
 					format.json { head :no_content }
 				end
+			end
+
+			private
+			def restrict_access
+				api_key = User.find_by_api_key(params[:api_key])
+				head :unauthorized unless api_key
 			end
 		end
 	end
